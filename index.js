@@ -64,7 +64,7 @@ module.exports.start = function(options, next) {
             });
          }
 
-         API.registerAnswerFunction(sendMail);
+         API.ServiceFactory.registerFunction(sendMail);
 
          //console.log(API);
 
