@@ -15,5 +15,6 @@
    },
    "main": "index.js",
    "dependencies": {
+    "simple-template-mailer": "^0.1.1"
    }
 }

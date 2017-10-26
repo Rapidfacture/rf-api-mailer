@@ -4,6 +4,12 @@
  * API service: add a mailer
  */
 
+var config = require("rf-config"),
+   log = require("rf-log"),
+   simpleTemplateMailer = require('simple-template-mailer'),
+   API = require("rf-load").require("rf-api").API,
+   db = require("rf-load").require("db").db;
+
 module.exports.start = function(options, next) {
 
    // get mail settings from db
