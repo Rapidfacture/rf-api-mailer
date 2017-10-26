@@ -1,20 +1,19 @@
 {
-   "name": "rf-api-mailer",
-   "version": "0.0.1",
-   "description": "API mailer service.",
-   "author": "Rapidfacture GmbH",
-   "license": "MIT",
-   "maintainers": [
-     {
+  "name": "rf-api-mailer",
+  "version": "0.0.2",
+  "description": "API mailer service.",
+  "author": {
+    "name": "Felix Furtmayr"
+  },
+  "license": "MIT",
+  "maintainers": [
+    {
       "name": "felix_furtmayr",
       "email": "ff@rapidfacture.com"
-     }
-   ],
-   "author": {
-     "name": "Felix Furtmayr"
-   },
-   "main": "index.js",
-   "dependencies": {
+    }
+  ],
+  "main": "index.js",
+  "dependencies": {
     "simple-template-mailer": "^0.1.1"
-   }
+  }
 }
