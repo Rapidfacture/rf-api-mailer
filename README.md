@@ -10,6 +10,19 @@ API mailer service.
 
 > npm install rf-api-mailer
 
+## Example
+```js
+// load API
+var API = require("rf-load").require("rf-api").API;
+
+// load module and give saveDir parameter (path where the pdfs are stored)
+require("rf-load").module("rf-api-mailer"); 
+
+/** 
+* startMailer: start the mailer
+*/
+API.ServiceFactory.startMailer(); // execute startMailer function
+```
 
 ## Dependencies
 
