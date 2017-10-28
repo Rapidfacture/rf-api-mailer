@@ -25,14 +25,7 @@ module.exports.start = function(options, next) {
             log.error("no mail settings found in DB global");
          }
       });
-
-   /** 
-    * startMailer: start the mailer
-    *
-    * @example
-    * var API = require("rf-load").require("rf-api").API; // load API
-    * API.ServiceFactory.startMailer(); // execute startMailer function
-    */
+      
       function startMailer() {
          var mailer = simpleTemplateMailer({ // create instance
             // from db
