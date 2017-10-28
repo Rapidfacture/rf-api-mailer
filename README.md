@@ -3,8 +3,8 @@
 
 * Service for the `rf-api` project. 
 * Provides the `startMailer` function for the API
-* Starts a `simpleTemplateMailer`
-* Includes the `sendMail` function
+* Starts a `simpleTemplateMailer` instance.
+* Includes the `sendMail` function.
 
 ## Getting Started
 
