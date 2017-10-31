@@ -1,36 +1,63 @@
 # rf-api-mailer
+
 ⚠ unstable - do not use now ⚠
 
-* Service for the `rf-api` project. 
-* Provides the `startMailer` function for the API
-* Starts a `simpleTemplateMailer` instance.
-* Includes the `sendMail` function.
+Service for the `rf-api` project. Gets Mails settings from global db, starts mailer (`simpleTemplateMailer`).
+
 
 ## Getting Started
 
-To install the module:
-
 > npm install rf-api-mailer
 
-### Example
+### Init the service
 
-To load the module load the `rf-api` module first:
+
 ```js
+var Loader = require('rf-load').moduleLoader
+var load = new Loader()
+load.setModulePath(config.paths.modules)
 
-// load API
-var API = require("rf-load").require("rf-api").API;
+// other stuff
+load.file('db')
+load.file('http')
 
-// load module and give saveDir parameter (path where the pdfs are stored)
-require("rf-load").module("rf-api-mailer"); 
+// start request api
+load.file('rf-api')
+
+// plug in mailer into the api
+load.module("rf-api-mailer");
+
 ```
-Include the `startMailer` function at your wished position:
+
+
+### Use the service
 ```js
-API.ServiceFactory.startMailer();
+// load Services
+var Service = require("rf-load").require("rf-api").API.ServiceFactory;
+
+/** use it
+* @param template: template name as string
+* @param options: nodeMailer mailOptions
+* @param sucessFunction
+* @param errorFunction
+*/
+
+Service.sendMail(stream, res, func);
 ```
 
-## Dependencies
+## Peer Dependencies
+* `rf-api`
 
-Needs to have `simple-template-mailer` & `rf-api` to be installed.
+
+## Development
+
+Install the dev tools with
+
+> npm install
+
+Then you can runs some test cases and eslint with:
+
+> npm test
 
 
 ## Legal Issues

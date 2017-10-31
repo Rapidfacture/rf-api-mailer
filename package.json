@@ -1,22 +1,45 @@
 {
-  "name": "rf-api-mailer",
-  "version": "0.0.4",
-  "description": "API mailer service.",
-  "author": {
-    "name": "Felix Furtmayr"
-  },
-  "license": "MIT",
-  "maintainers": [
-    {
-      "name": "felix_furtmayr",
-      "email": "ff@rapidfacture.com"
-    }
-  ],
-  "main": "index.js",
-  "dependencies": {
-    "simple-template-mailer": "^0.1.1"
-  },
-  "peerDependencies": {
-    "rf-api": "^0.0.5"
-  }
+   "name": "rf-api-mailer",
+   "version": "0.0.5",
+   "description": "API mailer service.",
+   "license": "MIT",
+   "peerDependencies": {
+      "rf-api": "^0.0.5"
+   },
+   "dependencies": {
+      "simple-template-mailer": "^0.1.1"
+   },
+   "devDependencies": {
+      "grunt": "1.0.1",
+      "grunt-eslint": "20.1.0"
+   },
+   "scripts": {
+      "prepublish": "npm test",
+      "test": "sh test/isRepoClean && grunt"
+   },
+   "main": "index.js",
+   "author": {
+      "name": "Felix Furtmayr"
+   },
+   "maintainers": [{
+         "name": "jochenh",
+         "email": "jh@rapidfacture.com"
+      },
+      {
+         "name": "mitzenthaler",
+         "email": "itzenthaler@web-mi.de"
+      },
+      {
+         "name": "alex-kohl",
+         "email": "alexander-kohl@gmx.net"
+      },
+      {
+         "name": "joshsimon",
+         "email": "joshsimon@gmx.de"
+      },
+      {
+         "name": "felix_furtmayr",
+         "email": "ff@rapidfacture.com"
+      }
+   ]
 }
