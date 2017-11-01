@@ -33,7 +33,7 @@ load.module("rf-api-mailer");
 ### Use the service
 ```js
 // load Services
-var Service = require("rf-load").require("rf-api").API.ServiceFactory;
+var Services = require("rf-load").require("rf-api").API.Services;
 
 /** use it
 * @param template: template name as string
@@ -42,7 +42,7 @@ var Service = require("rf-load").require("rf-api").API.ServiceFactory;
 * @param errorFunction
 */
 
-Service.sendMail(stream, res, func);
+Services.sendMail(stream, res, func);
 ```
 
 ## Peer Dependencies
