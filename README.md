@@ -29,20 +29,21 @@ load.module("rf-api-mailer");
 
 ```
 
-
 ### Use the service
 ```js
-// load Services
-var Services = require("rf-load").require("rf-api").API.Services;
 
-/** use it
-* @param template: template name as string
-* @param options: nodeMailer mailOptions
-* @param sucessFunction
-* @param errorFunction
-*/
+var API = require("rf-load").require("rf-api").API;
 
-Services.sendMail(stream, res, func);
+API.post('/mail', function(req, res, services){
+
+   services.sendMail(req.data.template, req.data.mailOptions, function(thumbnail){
+      // success
+      res.send(null, thumbnail)
+
+   }); // on error: automatic response to frontend
+
+})
+
 ```
 
 ## Peer Dependencies

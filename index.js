@@ -63,7 +63,7 @@ module.exports.start = function (options, next) {
          })
       }
 
-      API.ServiceFactory.registerFunction(sendMail)
+      API.Services.registerFunction(sendMail)
 
       // console.log(API);
 
