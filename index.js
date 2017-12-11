@@ -39,33 +39,22 @@ module.exports.start = function (options, next) {
       })
 
 
-      function sendMail (template, options, sucessFunction, errorFunction) {
+      function sendMail (template, options, callback) {
+         callback = callback || function () {}
          options = options || {}
          options.from = options.from || config.mail.contactMail
          options.replyTo = options.replyTo || config.mail.contactMail
 
-         var self = this // this will hold variables from the answer function
-
          mailer.send(template, options, function (data, info) {
             log.success('mail sent')
-            if (sucessFunction) {
-               sucessFunction(data, info)
-            }
+            callback(null, data)
          }, function (err, info) {
-            if (errorFunction) {
-               log.error('mailer error ', err, info)
-               errorFunction(err, info)
-            } else {
-               // TODO better custom errors here
-
-               self.error('Mailer error: ' + err)
-            }
+            log.error('mailer error ', err, info)
+            callback(err, null)
          })
       }
 
       API.Services.registerFunction(sendMail)
-
-      // console.log(API);
 
       next()
    }
