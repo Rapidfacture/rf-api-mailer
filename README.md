@@ -22,7 +22,7 @@ load.file('db')
 load.file('http')
 
 // start request api
-load.file('rf-api')
+load.module('rf-api')
 
 // plug in mailer into the api
 load.module("rf-api-mailer");
@@ -36,11 +36,9 @@ var API = require("rf-load").require("rf-api").API;
 
 API.post('/mail', function(req, res, services){
 
-   services.sendMail(req.data.template, req.data.mailOptions, function(thumbnail){
-      // success
-      res.send(null, thumbnail)
-
-   }); // on error: automatic response to frontend
+   services.sendMail(req.data.template, req.data.mailOptions, function(err, thumbnail){
+      res.send(err, thumbnail)
+   });
 
 })
 
