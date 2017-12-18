@@ -3,6 +3,10 @@
    "version": "0.1.0",
    "description": "API mailer service.",
    "license": "MIT",
+   "repository": {
+     "type": "git",
+     "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
+     },
    "peerDependencies": {
       "rf-api": "^0.0.5"
    },
