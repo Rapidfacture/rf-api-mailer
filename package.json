@@ -7,7 +7,7 @@
       "rf-api": "^0.0.5"
    },
    "dependencies": {
-      "simple-template-mailer": "^0.1.1"
+      "simple-template-mailer": "0.1.1"
    },
    "devDependencies": {
       "grunt": "1.0.1",
