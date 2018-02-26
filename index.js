@@ -1,61 +1,66 @@
-/* jshint node: true */
-'use strict'
-
 /**
- * API service: add a mailer
+ * API mailer service
  */
 
-var config = require('rf-config'),
-   log = require('rf-log'),
-   simpleTemplateMailer = require('simple-template-mailer'),
-   API = require('rf-load').require('rf-api').API,
-   db = require('rf-load').require('db').db
+var simpleTemplateMailer = require('simple-template-mailer');
 
-module.exports.start = function (options, next) {
-   // get mail settings from db
-   db.global.settings
-      .findOne({
-         'name': 'mail'
-      })
-      .exec(function (err, doc) {
-         if (err) {
-            log.error(err)
-         } else if (doc && doc.settings) {
-            config.mail = doc.settings
-            startMailer()
-         } else {
-            log.error('no mail settings found in DB global')
+// logging
+var log = {
+   success: console.log,
+   error: console.error,
+   critical: function () {
+      throw new Error(console.error.apply(arguments));
+   }
+};
+try { // try using rf-log
+   log = require(require.resolve('rf-log')).customPrefixLogger('[rf-api-mailer]');
+} catch (e) {}
+
+module.exports.start = function (mainOptions) {
+
+   // validate options
+   if (!mainOptions.transporter) {
+      log.error('no transporter defined, aborting');
+      return;
+   }
+   if (!mainOptions.translationsPath) {
+      log.error('no translationsPath defined, aborting');
+      return;
+   }
+   if (!mainOptions.templatesPath) {
+      log.error('no templatesPath defined, aborting');
+      return;
+   }
+
+
+   // create mailer instance
+   var mailer = simpleTemplateMailer({
+      transporter: mainOptions.transporter, // mailserver config data
+      defaultLanguage: mainOptions.defaultLanguage,
+      // paths: from config file
+      translationsPath: mainOptions.translationsPath,
+      templatesPath: mainOptions.templatesPath
+   });
+
+
+   // give back send mail function
+   return {
+      sendMail: function (template, options, callback) {
+         options = options || {};
+         options.from = options.from || mainOptions.contactMail;
+         options.replyTo = options.replyTo || mainOptions.contactMail;
+         if (!callback) {
+            log.error('no callback defined, aborting');
+            return;
          }
-      })
-
-   function startMailer () {
-      var mailer = simpleTemplateMailer({ // create instance
-         // from db
-         transporter: config.mail.transporter,
-         defaultLanguage: config.mail.defaultLanguage,
-         // paths: from config file
-         translationsPath: config.configPaths.mail + '/translations',
-         templatesPath: config.configPaths.mail + '/templates'
-      })
-
-
-      function sendMail (template, options, callback) {
-         callback = callback || function () {}
-         options = options || {}
-         options.from = options.from || config.mail.contactMail
-         options.replyTo = options.replyTo || config.mail.contactMail
 
          mailer.send(template, options, function (data, info) {
-            log.success('mail sent')
-            callback(null, data)
+            log.success('mail sent');
+            callback(null, data);
          }, function (err, info) {
-            log.error('mailer error ', err, info)
-            callback(err, null)
-         })
+            log.error('mailer error ', err, info);
+            callback(err, null);
+         });
       }
-
-      API.Services.registerFunction(sendMail)
-
-      next()
-   }
-}
+   };
+};

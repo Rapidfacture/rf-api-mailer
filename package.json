@@ -7,9 +7,6 @@
      "type": "git",
      "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
      },
-   "peerDependencies": {
-      "rf-api": "^0.0.5"
-   },
    "dependencies": {
       "simple-template-mailer": "0.1.1"
    },
@@ -18,29 +15,14 @@
       "grunt-eslint": "20.1.0"
    },
    "scripts": {
-      "prepublish": "sh test/isRepoClean && npm test",
+      "prepublish": "npm test",
       "test": "grunt"
    },
    "main": "index.js",
    "author": {
       "name": "Felix Furtmayr"
    },
-   "maintainers": [{
-         "name": "jochenh",
-         "email": "jh@rapidfacture.com"
-      },
-      {
-         "name": "mitzenthaler",
-         "email": "itzenthaler@web-mi.de"
-      },
-      {
-         "name": "alex-kohl",
-         "email": "alexander-kohl@gmx.net"
-      },
-      {
-         "name": "joshsimon",
-         "email": "joshsimon@gmx.de"
-      },
+   "maintainers": [
       {
          "name": "felix_furtmayr",
          "email": "ff@rapidfacture.com"
