@@ -26,6 +26,26 @@ var services: {
 
 ```
 
+
+Assuming, that templates and translations are in one folder you might pass the path options direct like:
+
+```js
+
+var mailerOptions ={
+   transporter: mainOptions., // nodemailer transporter
+   defaultLanguage: 'en',
+   contactMail: 'your@contactMail.com' // optional
+});
+
+var mailPath = 'mail/';
+
+var services: {
+   sendMail: require('rf-api-mailer').start(mailerOptions, mailPath).sendMail
+}
+
+```
+
+
 ## Use the service
 ```js
 

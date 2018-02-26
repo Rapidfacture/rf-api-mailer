@@ -3,6 +3,7 @@
  */
 
 var simpleTemplateMailer = require('simple-template-mailer');
+var path = require('path');
 
 // logging
 var log = {
@@ -16,18 +17,18 @@ try { // try using rf-log
    log = require(require.resolve('rf-log')).customPrefixLogger('[rf-api-mailer]');
 } catch (e) {}
 
-module.exports.start = function (mainOptions) {
+module.exports.start = function (mainOptions, mainPath) {
 
    // validate options
    if (!mainOptions.transporter) {
       log.error('no transporter defined, aborting');
       return;
    }
-   if (!mainOptions.translationsPath) {
+   if (!mainPath && !mainOptions.translationsPath) {
       log.error('no translationsPath defined, aborting');
       return;
    }
-   if (!mainOptions.templatesPath) {
+   if (!mainPath && !mainOptions.templatesPath) {
       log.error('no templatesPath defined, aborting');
       return;
    }
@@ -37,9 +38,9 @@ module.exports.start = function (mainOptions) {
    var mailer = simpleTemplateMailer({
       transporter: mainOptions.transporter, // mailserver config data
       defaultLanguage: mainOptions.defaultLanguage,
-      // paths: from config file
-      translationsPath: mainOptions.translationsPath,
-      templatesPath: mainOptions.templatesPath
+      // paths
+      translationsPath: mainOptions.translationsPath || path.join(mainPath + 'translations'),
+      templatesPath: mainOptions.templatesPath || path.join(mainPath + 'templates')
    });
 
 
