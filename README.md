@@ -1,51 +1,45 @@
 # rf-api-mailer
 
-⚠ unstable - do not use now ⚠
-
-Service for the `rf-api` project. Gets Mails settings from global db, starts mailer (`simpleTemplateMailer`).
+Gets Mails settings and starts `simpleTemplateMailer`.
 
 
 ## Getting Started
 
-> npm install rf-api-mailer
+> npm install rf-api-thumbnail
 
-### Init the service
+## Init the service
 
 
 ```js
-var Loader = require('rf-load').moduleLoader
-var load = new Loader()
-load.setModulePath(config.paths.modules)
 
-// other stuff
-load.file('db')
-load.file('http')
+var mailerOptions ={
+   transporter: mainOptions., // nodemailer transporter
+   defaultLanguage: 'en',
+   contactMail: 'your@contactMail.com' // optional
+   translationsPath: 'mail/translations',
+   templatesPath: 'mail/templates',
+});
 
-// start request api
-load.module('rf-api')
-
-// plug in mailer into the api
-load.module("rf-api-mailer");
+var services: {
+   sendMail: require('rf-api-mailer').start(mailerOptions).sendMail
+}
 
 ```
 
-### Use the service
+## Use the service
 ```js
 
-var API = require("rf-load").require("rf-api").API;
+// simple example
+services.sendMail(req.data.template, req.data.mailOptions, function(err, data){
+   console.log(err, data)
+});
 
-API.post('/mail', function(req, res, services){
-
-   services.sendMail(req.data.template, req.data.mailOptions, function(err, thumbnail){
-      res.send(err, thumbnail)
-   });
-
+// with rf-api
+API.post('/sendmail', function(req, res){
+   services.sendMail(req.data.template, req.data.mailOptions, res.send);
 })
 
 ```
-
-## Peer Dependencies
-* `rf-api`
 
 
 ## Development
