@@ -1,31 +1,31 @@
 {
-   "name": "rf-api-mailer",
-   "version": "0.1.0",
-   "description": "API mailer service.",
-   "license": "MIT",
-   "repository": {
-     "type": "git",
-     "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
-     },
-   "dependencies": {
-      "simple-template-mailer": "0.1.1"
-   },
-   "devDependencies": {
-      "grunt": "1.0.1",
-      "grunt-eslint": "20.1.0"
-   },
-   "scripts": {
-      "prepublish": "npm test",
-      "test": "grunt"
-   },
-   "main": "index.js",
-   "author": {
-      "name": "Felix Furtmayr"
-   },
-   "maintainers": [
-      {
-         "name": "felix_furtmayr",
-         "email": "ff@rapidfacture.com"
-      }
-   ]
+  "name": "rf-api-mailer",
+  "version": "0.2.0",
+  "description": "API mailer service.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
+  },
+  "dependencies": {
+    "simple-template-mailer": "0.1.1"
+  },
+  "devDependencies": {
+    "grunt": "1.0.1",
+    "grunt-eslint": "20.1.0"
+  },
+  "scripts": {
+    "prepublish": "npm test",
+    "test": "grunt"
+  },
+  "main": "index.js",
+  "author": {
+    "name": "Felix Furtmayr"
+  },
+  "maintainers": [
+    {
+      "name": "felix_furtmayr",
+      "email": "ff@rapidfacture.com"
+    }
+  ]
 }
