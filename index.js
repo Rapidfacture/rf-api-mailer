@@ -51,7 +51,7 @@ module.exports.start = function (mainOptions, mainPath) {
          options.from = options.from || mainOptions.contactMail;
          options.replyTo = options.replyTo || mainOptions.contactMail;
          if (!callback) {
-            log.error('no callback defined, aborting');
+            log.error('function "sendMail": no callback defined, aborting');
             return;
          }
 
@@ -60,6 +60,19 @@ module.exports.start = function (mainOptions, mainPath) {
             callback(null, data);
          }, function (err, info) {
             log.error('mailer error ', err, info);
+            callback(err, null);
+         });
+      },
+      getTemplate: function (template, callback) {
+         if (!callback) {
+            log.error('function "getTemplate": no callback defined, aborting');
+            return;
+         }
+
+         mailer.getTemplate(template, function (data) {
+            log.success('got mail template');
+            callback(null, data);
+         }, function (err) {
             callback(err, null);
          });
       }
