@@ -39,8 +39,8 @@ module.exports.start = function (mainOptions, mainPath) {
       transporter: mainOptions.transporter, // mailserver config data
       defaultLanguage: mainOptions.defaultLanguage,
       // paths
-      translationsPath: mainOptions.translationsPath || path.join(mainPath + 'translations'),
-      templatesPath: mainOptions.templatesPath || path.join(mainPath + 'templates')
+      translationsPath: mainOptions.translationsPath || path.join(mainPath + '/translations'),
+      templatesPath: mainOptions.templatesPath || path.join(mainPath + '/templates')
    });
 
 

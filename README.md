@@ -37,7 +37,7 @@ var mailerOptions ={
    contactMail: 'your@contactMail.com' // optional
 });
 
-var mailPath = 'mail/';
+var mailPath = 'mail';
 
 var services: {
    sendMail: require('rf-api-mailer').start(mailerOptions, mailPath).sendMail
