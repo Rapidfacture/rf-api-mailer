@@ -40,7 +40,8 @@ module.exports.start = function (mainOptions, mainPath) {
       defaultLanguage: mainOptions.defaultLanguage,
       // paths
       translationsPath: mainOptions.translationsPath || path.join(mainPath + '/translations'),
-      templatesPath: mainOptions.templatesPath || path.join(mainPath + '/templates')
+      templatesPath: mainOptions.templatesPath || path.join(mainPath + '/templates'),
+      inlineAttribute: (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline'
    });
 
 

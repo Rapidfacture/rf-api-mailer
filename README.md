@@ -18,6 +18,7 @@ var mailerOptions ={
    contactMail: 'your@contactMail.com' // optional
    translationsPath: 'mail/translations',
    templatesPath: 'mail/templates',
+   inlineAttribute: 'inline' // all html tags with this attribute will be "inlined" by "inline-source"
 });
 
 var services: {
@@ -49,8 +50,18 @@ var services: {
 ## Use the service
 ```js
 
+var template = {
+   name: 'newsletter',
+   language: "en",
+   data: {test: 234} // data from your app inserted in template
+   inlineAttribute: "inline" // optional: individual inline configuration
+};
+
+var mailOptions = {to:["max.mustermann@gmx.net"]}; // nodemailer options
+
+
 // simple example
-services.sendMail(req.data.template, req.data.mailOptions, function(err, data){
+services.sendMail(template, mailOptions, function(err, data){
    console.log(err, data)
 });
 
