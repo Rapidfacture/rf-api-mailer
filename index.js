@@ -7,22 +7,23 @@ var path = require('path');
 
 module.exports.start = function (mainOptions, mainPath) {
 
+   // defaults
+   mainOptions = mainOptions || {};
+   mainOptions.translationsPath = mainOptions.translationsPath || path.join(mainPath + '/translations');
+   mainOptions.templatesPath = mainOptions.mainOptions.templatesPath || path.join(mainPath + '/templates');
+   mainOptions.inlineAttribute = (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline';
+
    // create mailer instance
-   var mailer = simpleTemplateMailer({
-      transporter: mainOptions.transporter, // mailserver config data
-      defaultLanguage: mainOptions.defaultLanguage,
-      // paths
-      translationsPath: mainOptions.translationsPath || path.join(mainPath + '/translations'),
-      templatesPath: mainOptions.templatesPath || path.join(mainPath + '/templates'),
-      inlineAttribute: (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline'
-   });
+   var mailer = simpleTemplateMailer(mainOptions);
 
    // give back send mail function
    return {
       sendMail: function (template, options, callback) {
+         // defaults
          options = options || {};
          options.from = options.from || mainOptions.contactMail;
          options.replyTo = options.replyTo || mainOptions.contactMail;
+
          mailer.send(template, options, callback);
       },
       getTemplate: mailer.getTemplate
