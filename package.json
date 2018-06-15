@@ -1,6 +1,6 @@
 {
   "name": "rf-api-mailer",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "API mailer service.",
   "license": "MIT",
   "repository": {
