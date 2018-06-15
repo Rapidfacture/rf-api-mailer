@@ -10,7 +10,7 @@ module.exports.start = function (mainOptions, mainPath) {
    // defaults
    mainOptions = mainOptions || {};
    mainOptions.translationsPath = mainOptions.translationsPath || path.join(mainPath + '/translations');
-   mainOptions.templatesPath = mainOptions.mainOptions.templatesPath || path.join(mainPath + '/templates');
+   mainOptions.templatesPath = mainOptions.templatesPath || path.join(mainPath + '/templates');
    mainOptions.inlineAttribute = (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline';
 
    // create mailer instance
