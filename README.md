@@ -5,7 +5,7 @@ Gets Mails settings and starts `simpleTemplateMailer`.
 
 ## Getting Started
 
-> npm install rf-api-thumbnail
+> npm install rf-api-mailer
 
 ## Init the service
 
