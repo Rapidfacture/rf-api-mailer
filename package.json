@@ -8,7 +8,7 @@
     "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
   },
   "dependencies": {
-    "simple-template-mailer": "0.2.3"
+    "simple-template-mailer": "0.2.4"
   },
   "devDependencies": {
     "grunt": "1.0.1",
