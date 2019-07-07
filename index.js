@@ -21,7 +21,7 @@ module.exports.start = function (mainOptions, mainPath) {
       sendMail: function (template, options, callback) {
          // defaults
          options = options || {};
-         options.from = options.from || mainOptions.contactMail;
+         options.from = options.from || mainOptions.from || mainOptions.contactMail;
          options.replyTo = options.replyTo || mainOptions.contactMail;
 
          mailer.send(template, options, callback);
