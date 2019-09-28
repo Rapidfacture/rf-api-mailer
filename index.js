@@ -2,30 +2,40 @@
  * API mailer service
  */
 
-var simpleTemplateMailer = require('simple-template-mailer');
-var path = require('path');
+const simpleTemplateMailer = require('simple-template-mailer');
+const path = require('path');
 
-module.exports.start = function (mainOptions, mainPath) {
+module.exports = {
 
-   // defaults
-   mainOptions = mainOptions || {};
-   mainOptions.translationsPath = mainOptions.translationsPath || path.join(mainPath + '/translations');
-   mainOptions.templatesPath = mainOptions.templatesPath || path.join(mainPath + '/templates');
-   mainOptions.inlineAttribute = (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline';
+   mailer: {},
+   options: {},
 
-   // create mailer instance
-   var mailer = simpleTemplateMailer(mainOptions);
+   start: function (mainOptions, mainPath) {
 
-   // give back send mail function
-   return {
-      sendMail: function (template, options, callback) {
-         // defaults
-         options = options || {};
-         options.from = options.from || mainOptions.from || mainOptions.contactMail;
-         options.replyTo = options.replyTo || mainOptions.contactMail;
+      // defaults
+      let opts = module.exports.options;
+      opts = mainOptions || {};
+      opts.translationsPath = mainOptions.translationsPath || path.join(mainPath + '/translations');
+      opts.templatesPath = mainOptions.templatesPath || path.join(mainPath + '/templates');
+      opts.inlineAttribute = (mainOptions.inlineAttribute || mainOptions.inlineAttribute === false) ? mainOptions.inlineAttribute : 'inline';
 
-         mailer.send(template, options, callback);
-      },
-      getTemplate: mailer.getTemplate
-   };
+      // create mailer instance
+      module.exports.mailer = simpleTemplateMailer(opts);
+
+      // give back all functions
+      return module.exports;
+   },
+
+   sendMail: function (template, options, callback) {
+      // defaults
+      options = options || {};
+      options.from = options.from || module.exports.options.from || module.exports.options.contactMail;
+      options.replyTo = options.replyTo || module.exports.options.contactMail;
+      module.exports.mailer.send(template, options, callback);
+   },
+
+   getTemplate: function () {
+      module.exports.mailer.getTemplate.apply(null, arguments);
+   }
+
 };
