@@ -1,6 +1,6 @@
 {
   "name": "rf-api-mailer",
-  "version": "0.5.0",
+  "version": "0.5.5",
   "description": "API mailer service.",
   "license": "MIT",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git@github.com:RAPIDFACTURE/rf-api-mailer.git"
   },
   "dependencies": {
-    "simple-template-mailer": "0.3.1"
+    "simple-template-mailer": "0.4.0"
   },
   "devDependencies": {
     "grunt": "1.0.1",
